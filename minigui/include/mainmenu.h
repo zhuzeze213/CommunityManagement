@@ -1,0 +1,41 @@
+#ifndef MAINMENU_H
+#define MAINMENU_H
+
+#define IDM_1 100
+#define IDM_2 101
+#define IDM_3 102
+#define IDM_4 103
+#define IDM_5 104
+/*MAIN MENU*/
+#define IDM_MEMBER 1
+#define IDM_COMMUNITY 2
+#define IDM_AVTIVITY 3
+#define IDM_INFORMATION 4
+#define IDM_ABOUT 5
+
+/*operate in IDM_MEMBER*/
+#define IDM_LOOK_MEMBER 6
+#define IDM_DELETE_MEMBER 7
+#define IDM_ADD_MEMBER 8
+#define IDM_FIND_MEMBER 9
+#define IDM_UPDATE_MEMBER 10
+
+/*operate in IDM_COMMUNITY*/
+#define IDM_LOOK_COMMUNITY 11
+#define IDM_DELETE_COMMUNITY 12
+#define IDM_ADD_COMMUNITY 13
+#define IDM_FIND_COMMUNITY 14
+#define IDM_UPDATE_COMMUNITY 15
+
+/*operate in IDM_AVTIVITY*/
+#define IDM_LOOK_AVTIVITY 16
+#define IDM_DELETE_AVTIVITY 17
+#define IDM_ADD_AVTIVITY 18
+#define IDM_FIND_AVTIVITY 19
+#define IDM_UPDATE_AVTIVITY 20
+
+/*operate in IDM_INFORMATION*/
+#define IDM_UPDATE_PASSWORD 21
+#define IDM_LOOK_INFOMATION 22
+
+#endif
