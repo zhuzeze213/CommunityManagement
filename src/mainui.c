@@ -1,4 +1,4 @@
-#include "../include/member.h"
+﻿#include "../include/member.h"
 #include "../minigui/include/myarg.h"
 static int MainWinProc(HWND hWnd,int message,WPARAM wParam,LPARAM lParam)
 {
@@ -31,9 +31,14 @@ static int MainWinProc(HWND hWnd,int message,WPARAM wParam,LPARAM lParam)
 			return 0;
 		case MSG_COMMAND:
 			switch (wParam) {
-				case IDM_ADD_MEMBER:
+				case IDM_REGISTER:
 				DlgAddmember.controls=CtrlAddmember;
 				DialogBoxIndirectParam (&DlgAddmember, HWND_DESKTOP, AddmemberBoxProc, 0L);
+				break;
+				
+				case IDM_LOOK_INFOMATION:
+				DlgLookInformation.controls=CtrlLookInformation;
+				DialogBoxIndirectParam (&DlgLookInformation, HWND_DESKTOP, LookInformationBoxProc, 0L);
 				break;
 			}
 			return 0;
@@ -41,6 +46,7 @@ static int MainWinProc(HWND hWnd,int message,WPARAM wParam,LPARAM lParam)
 		case MSG_CLOSE:
 		DestroyMainWindow(hWnd);
 		PostQuitMessage(hWnd);
+		__setstate(user_name,NOONLINE);
 		return 0;
 	}
 	return DefaultMainWinProc(hWnd,message,wParam,lParam);

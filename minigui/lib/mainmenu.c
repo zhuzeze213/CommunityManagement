@@ -177,6 +177,23 @@ static HMENU information_menu(void)
     mii.typedata = (DWORD)"Look";
     InsertMenuItem(hmnu, count++, TRUE, &mii);
 	
+    mii.type = MFT_STRING;
+    mii.state = 0;
+    mii.id = IDM_REGISTER;
+    mii.typedata = (DWORD)"Register";
+    InsertMenuItem(hmnu, count++, TRUE, &mii);
+
+    mii.type = MFT_STRING;
+    mii.state = 0;
+    mii.id = IDM_APPLY;
+    mii.typedata = (DWORD)"Apply";
+    InsertMenuItem(hmnu, count++, TRUE, &mii);
+
+    mii.type = MFT_STRING;
+    mii.state = 0;
+    mii.id = IDM_EXIT;
+    mii.typedata = (DWORD)"Exit";
+    InsertMenuItem(hmnu, count++, TRUE, &mii);
 	return hmnu;
 }
 

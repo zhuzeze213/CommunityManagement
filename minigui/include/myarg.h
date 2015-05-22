@@ -5,6 +5,7 @@
 #include "login.h"
 #include "addmember.h"
 #include "util.h"
+#include "lookinformation.h"
 #include "../../include/member.h"
 
 /*important variables*/
@@ -23,6 +24,9 @@ CTRLDATA CtrlLogin[LOGIN_ELEMENT_NUM];
 DLGTEMPLATE DlgAddmember;
 CTRLDATA CtrlAddmember[ADDMEMBER_ELEMENT_NUM];
 
+/*The template data in lookinformation */
+DLGTEMPLATE DlgLookInformation;
+CTRLDATA CtrlLookInformation[LOOKINFORMATION_ELEMENT_NUM];
 /*The following arg is normal! */
 #define ID_TIMER 50
 #define TIME_FLUSH 100

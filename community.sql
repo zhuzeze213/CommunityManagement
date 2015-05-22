@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-05-15 16:40:16
+Date: 2015-05-17 10:24:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,13 +26,15 @@ CREATE TABLE `activity_info` (
   `a_date` date DEFAULT NULL,
   `a_time` float DEFAULT NULL,
   `a_state` int(11) NOT NULL DEFAULT '0',
+  `a_baoliu` char(255) DEFAULT NULL,
   PRIMARY KEY (`a_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of activity_info
 -- ----------------------------
-INSERT INTO `activity_info` VALUES ('1', '天使之心', '湖北中医药大学南区', '2015-05-15', '3', '0');
+INSERT INTO `activity_info` VALUES ('1', '天使之心', '湖北中医药大学南区', '2015-05-15', '3', '0', null);
+INSERT INTO `activity_info` VALUES ('2', '心理健康', '操场', '2015-05-17', '3', '0', null);
 
 -- ----------------------------
 -- Table structure for `activity_list`
@@ -42,6 +44,7 @@ CREATE TABLE `activity_list` (
   `a_id` int(11) NOT NULL,
   `c_id` int(11) NOT NULL,
   `m_id` int(11) NOT NULL,
+  `al_baoliu` char(255) DEFAULT NULL,
   PRIMARY KEY (`a_id`,`c_id`,`m_id`),
   KEY `a_id` (`a_id`),
   KEY `cc_id` (`c_id`),
@@ -54,7 +57,9 @@ CREATE TABLE `activity_list` (
 -- ----------------------------
 -- Records of activity_list
 -- ----------------------------
-INSERT INTO `activity_list` VALUES ('1', '1', '1');
+INSERT INTO `activity_list` VALUES ('1', '1', '1', null);
+INSERT INTO `activity_list` VALUES ('1', '1', '2', null);
+INSERT INTO `activity_list` VALUES ('2', '2', '2', null);
 
 -- ----------------------------
 -- Table structure for `community_info`
@@ -67,13 +72,15 @@ CREATE TABLE `community_info` (
   `c_phone` char(15) DEFAULT NULL COMMENT '电话',
   `master_no` int(11) NOT NULL COMMENT '部长编号',
   `c_infomation` text,
+  `c_baoliu` char(255) DEFAULT NULL,
   PRIMARY KEY (`c_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of community_info
 -- ----------------------------
-INSERT INTO `community_info` VALUES ('1', '心理协会', '2015-01-01', '1234', '1', '健康心理');
+INSERT INTO `community_info` VALUES ('1', '心理协会', '2015-01-01', '1234', '1', '健康心理', null);
+INSERT INTO `community_info` VALUES ('2', '瑜伽协会', '2015-05-03', '98765', '2', '瑜伽', null);
 
 -- ----------------------------
 -- Table structure for `info_diffusion`
@@ -85,17 +92,19 @@ CREATE TABLE `info_diffusion` (
   `c_id` int(11) NOT NULL DEFAULT '0',
   `i_text` text,
   `i_date` date DEFAULT NULL,
+  `i_baoliu` char(255) DEFAULT NULL,
   PRIMARY KEY (`i_id`),
   KEY `im_id` (`m_id`),
   KEY `ic_id` (`c_id`),
   CONSTRAINT `ic_id` FOREIGN KEY (`c_id`) REFERENCES `community_info` (`c_id`) ON UPDATE CASCADE,
   CONSTRAINT `im_id` FOREIGN KEY (`m_id`) REFERENCES `member_info` (`m_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of info_diffusion
 -- ----------------------------
-INSERT INTO `info_diffusion` VALUES ('1', '1', '1', '社长发布消息', '2015-05-15');
+INSERT INTO `info_diffusion` VALUES ('1', '1', '1', '心理社长发布消息', '2015-05-15', null);
+INSERT INTO `info_diffusion` VALUES ('2', '2', '2', '瑜伽协会发布消息', '2015-05-17', null);
 
 -- ----------------------------
 -- Table structure for `member_admin`
@@ -105,6 +114,7 @@ CREATE TABLE `member_admin` (
   `m_id` int(11) NOT NULL COMMENT '会员编号',
   `c_id` int(11) NOT NULL COMMENT '社团编号',
   `grant` int(11) NOT NULL DEFAULT '3' COMMENT '权限',
+  `ma_baoliu` char(255) DEFAULT NULL,
   PRIMARY KEY (`m_id`,`c_id`),
   KEY `c_id` (`c_id`),
   CONSTRAINT `c_id` FOREIGN KEY (`c_id`) REFERENCES `community_info` (`c_id`) ON UPDATE CASCADE,
@@ -114,7 +124,8 @@ CREATE TABLE `member_admin` (
 -- ----------------------------
 -- Records of member_admin
 -- ----------------------------
-INSERT INTO `member_admin` VALUES ('1', '1', '1');
+INSERT INTO `member_admin` VALUES ('1', '1', '1', null);
+INSERT INTO `member_admin` VALUES ('2', '2', '1', null);
 
 -- ----------------------------
 -- Table structure for `member_info`
@@ -128,10 +139,12 @@ CREATE TABLE `member_info` (
   `m_phone` char(15) DEFAULT NULL COMMENT '电话',
   `password` char(20) NOT NULL,
   `state` int(11) NOT NULL DEFAULT '0' COMMENT '是否已登录',
+  `m_baoliu` char(255) DEFAULT NULL,
   PRIMARY KEY (`m_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of member_info
 -- ----------------------------
-INSERT INTO `member_info` VALUES ('1', '袁满', '20120702030', '女', '15972926714', '123456', '0');
+INSERT INTO `member_info` VALUES ('1', '袁满', '20120702030', '女', '15972926714', '123456', '0', null);
+INSERT INTO `member_info` VALUES ('2', '孙露婷', '20120702055', '女', '18064117322', '8907', '0', null);

@@ -37,5 +37,7 @@
 /*operate in IDM_INFORMATION*/
 #define IDM_UPDATE_PASSWORD 21
 #define IDM_LOOK_INFOMATION 22
-
+#define IDM_REGISTER 23
+#define IDM_APPLY 24
+#define IDM_EXIT 25
 #endif

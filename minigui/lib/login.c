@@ -1,5 +1,6 @@
 #include "../include/myarg.h"
 
+int have_verify=0;
 DLGTEMPLATE DlgLogin =
 {
     WS_BORDER | WS_CAPTION,
@@ -70,10 +71,20 @@ static void verifyaccount(HWND hDlg)
 	GetWindowText (GetDlgItem (hDlg, IDC_L_USERNAME), user_name, USERNAME_L_LENGTH);
 	GetWindowText (GetDlgItem (hDlg, IDC_L_PASSWORD), password, PASSWORD_L_LENGTH);
 	//printf("%s\n%s\n",username,password);
-	if(!strcmp(user_name,TEST_NAME)&&!strcmp(password,TEST_PASSWORD))
-		user_grant=GRANT_ROOT;	
-	else
-		user_grant=GRANT_PASSERS_BY;
+	if(!strcmp(user_name,TEST_NAME)&&!strcmp(password,TEST_PASSWORD)){
+		user_grant=GRANT_ROOT;
+		have_verify=1;	
+	}
+	else{
+		if(__verifyaccount(user_name,password)==SUCCESS){
+			have_verify=1;
+			MessageBox (hDlg,  "Operation Success", "Attention",MB_OK);
+			__getinformation(user_name);
+			__setstate(user_name,ONLINE);
+		}
+		else
+			MessageBox (hDlg, "Operation Fail", "Attention", MB_OK);
+	}
 	//printf("%d\n",user_grant);
 }
 
@@ -85,7 +96,8 @@ int LoginBoxProc (HWND hDlg, int message, WPARAM wParam, LPARAM lParam)
 			switch (wParam) {
 				case IDB_L_LOGIN:			
 					verifyaccount(hDlg);
-					EndDialog (hDlg, wParam);
+					if(have_verify)
+						EndDialog (hDlg, wParam);
 					break;
 				case IDB_L_PASSERS_BY:
 					user_grant=GRANT_PASSERS_BY;
@@ -93,7 +105,7 @@ int LoginBoxProc (HWND hDlg, int message, WPARAM wParam, LPARAM lParam)
 					break;		
 			}
 			break;
-        	}      
+        }      
     }
     return DefaultDialogProc (hDlg, message, wParam, lParam);
 }

@@ -1,4 +1,4 @@
-/* This head file include the name of functions in ../src */
+/* This head file include the name of functions in ../../src */
 #ifndef UTIL_H
 #define UTIL_H
 
@@ -10,4 +10,5 @@ int LoginBoxProc (HWND hDlg, int message, WPARAM wParam, LPARAM lParam);
 
 int AddmemberBoxProc (HWND hDlg, int message, WPARAM wParam, LPARAM lParam);
 
+int LookInformationBoxProc (HWND hDlg, int message, WPARAM wParam, LPARAM lParam);
 #endif

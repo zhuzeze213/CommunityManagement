@@ -126,8 +126,10 @@ static void addmember(HWND hDlg)
 	GetWindowText (GetDlgItem (hDlg, IDC_AM_PHONE), addone.phone, PHONE_LENGTH);
 	GetWindowText (GetDlgItem (hDlg, IDC_AM_PASSWORD), addone.password, PASSWORD_LENGTH);
 	
-	if(__addmember(&addone)==SUCCESS)
+	if(__addmember(&addone)==SUCCESS){
 		MessageBox (hDlg,  "Operation Success", "Attention",MB_OK);
+		//memcpy(&member_z,&addone,sizeof(struct member));
+	}
 	else
 		MessageBox (hDlg, "Operation Fail", "Attention", MB_OK);
 }
