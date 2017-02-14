@@ -73,7 +73,8 @@ static void verifyaccount(HWND hDlg)
 	//printf("%s\n%s\n",username,password);
 	if(!strcmp(user_name,TEST_NAME)&&!strcmp(password,TEST_PASSWORD)){
 		user_grant=GRANT_ROOT;
-		have_verify=1;	
+		have_verify=1;
+		strcpy(member_z.name,"root");
 	}
 	else{
 		if(__verifyaccount(user_name,password)==SUCCESS){
@@ -105,7 +106,7 @@ int LoginBoxProc (HWND hDlg, int message, WPARAM wParam, LPARAM lParam)
 					break;		
 			}
 			break;
-        }      
+        }
     }
     return DefaultDialogProc (hDlg, message, wParam, lParam);
 }

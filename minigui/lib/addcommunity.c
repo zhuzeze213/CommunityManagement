@@ -1,17 +1,17 @@
 #include "../include/myarg.h"
 
-DLGTEMPLATE DlgAddmember =
+DLGTEMPLATE DlgAddCommunity =
 {
     WS_BORDER | WS_CAPTION,
     WS_EX_NONE,
     100, 100, 330, 400,
-    ADDMEMBER,
+    ADDCOMMUNITY,
     0, 0,
-    ADDMEMBER_ELEMENT_NUM, NULL,
+    ADDCOMMUNITY_ELEMENT_NUM, NULL,
     0
 };
 
-CTRLDATA CtrlAddmember[] =
+CTRLDATA CtrlAddCommunity[] =
 {
 	/* name */
 	{
@@ -19,48 +19,31 @@ CTRLDATA CtrlAddmember[] =
         WS_VISIBLE | SS_SIMPLE, 
         20, 25, 70, 30,
         IDC_STATIC,
-        AM_NAME,
+        ADC_NAME,
         0
     },
 	{
         CTRL_EDIT,
         WS_VISIBLE | WS_TABSTOP | WS_BORDER ,
         80, 20, 190, 30,
-        IDC_AM_NAME,
+        IDC_ADC_NAME,
         NULL,
         0
     },
-	/* sno */
+	/* data */
 	{
         CTRL_STATIC,
         WS_VISIBLE | SS_SIMPLE, 
         20, 80, 70, 30,
         IDC_STATIC,
-        AM_SNO,
+        ADC_DATA,
         0
     },
 	{
         CTRL_EDIT,
         WS_VISIBLE | WS_TABSTOP | WS_BORDER ,
         80, 75, 190, 30,
-        IDC_AM_SNO,
-        NULL,
-        0
-    },
-	/* sex */
-	{
-        CTRL_STATIC,
-        WS_VISIBLE | SS_SIMPLE, 
-        20, 135, 70, 30,
-        IDC_STATIC,
-        AM_SEX,
-        0
-    },
-	{
-        CTRL_EDIT,
-        WS_VISIBLE | WS_TABSTOP | WS_BORDER ,
-        80, 130, 190, 30,
-        IDC_AM_SEX,
+        IDC_ADC_DATA,
         NULL,
         0
     },
@@ -68,33 +51,50 @@ CTRLDATA CtrlAddmember[] =
 	{
         CTRL_STATIC,
         WS_VISIBLE | SS_SIMPLE, 
+        20, 135, 70, 30,
+        IDC_STATIC,
+        ADC_PHONE,
+        0
+    },
+	{
+        CTRL_EDIT,
+        WS_VISIBLE | WS_TABSTOP | WS_BORDER ,
+        80, 130, 190, 30,
+        IDC_ADC_PHONE,
+        NULL,
+        0
+    },
+	/* master id */
+	{
+        CTRL_STATIC,
+        WS_VISIBLE | SS_SIMPLE, 
         20, 195, 70, 30,
         IDC_STATIC,
-        AM_PHONE,
+        ADC_MID,
         0
     },
 	{
         CTRL_EDIT,
         WS_VISIBLE | WS_TABSTOP | WS_BORDER ,
         80, 190, 190, 30,
-        IDC_AM_PHONE,
+        IDC_ADC_MID,
         NULL,
         0
     },
-	/* password */
+	/* information */
 	{
         CTRL_STATIC,
         WS_VISIBLE | SS_SIMPLE, 
         20, 250, 70, 30,
         IDC_STATIC,
-        AM_PASSWORD,
+        ADC_INFO,
         0
     },
 	{
         CTRL_EDIT,
         WS_VISIBLE | WS_TABSTOP | WS_BORDER ,
         80, 245, 190, 30,
-        IDC_AM_PASSWORD,
+        IDC_ADC_INFO,
         NULL,
         0
     },
@@ -103,51 +103,50 @@ CTRLDATA CtrlAddmember[] =
         "button",
         WS_VISIBLE | BS_PUSHBUTTON | WS_TABSTOP,
         70, 300, 80, 30,
-        IDB_AM_SUBMIT,
-        AM_SUBMIT,
+        IDB_ADC_SUBMIT,
+        ADC_SUBMIT,
         0
     },
 	{
         "button",
         WS_VISIBLE | BS_PUSHBUTTON | WS_TABSTOP,
         170, 300, 80, 30,
-        IDB_AM_CANCEL,
-        AM_CANCEL,
+        IDB_ADC_CANCEL,
+        ADC_CANCEL,
         0
     },	
 };
-static void addmember(HWND hDlg)
+static void addcommunity(HWND hDlg)
 {
-	struct member addone;
-	addone.state=INITSTATE;
-	GetWindowText (GetDlgItem (hDlg, IDC_AM_NAME), addone.name, NAME_LENGTH);
-	GetWindowText (GetDlgItem (hDlg, IDC_AM_SNO), addone.sno, SNO_LENGTH);
-	GetWindowText (GetDlgItem (hDlg, IDC_AM_SEX), addone.sex, SEX_LENGTH);
-	GetWindowText (GetDlgItem (hDlg, IDC_AM_PHONE), addone.phone, PHONE_LENGTH);
-	GetWindowText (GetDlgItem (hDlg, IDC_AM_PASSWORD), addone.password, PASSWORD_LENGTH);
+	GetWindowText (GetDlgItem (hDlg, IDC_ADC_NAME), community_z[0].c_name, NAME_LENGTH);
+	GetWindowText (GetDlgItem (hDlg, IDC_ADC_DATA), community_z[0].c_data, DATA_LENGTH);
+	GetWindowText (GetDlgItem (hDlg, IDC_ADC_PHONE), community_z[0].c_phone, PHONE_LENGTH);
+	char tmp[SHORT_BUFF];
+	GetWindowText (GetDlgItem (hDlg, IDC_ADC_MID), tmp, SHORT_BUFF);
+	community_z[0].master_no=atoi(tmp);
+	GetWindowText (GetDlgItem (hDlg, IDC_ADC_INFO), community_z[0].c_information,TEXT_LENGTH);
 	
-	if(__addmember(&addone)==SUCCESS){
+	if(__addcommunity(&(community_z[0]))==SUCCESS){
 		MessageBox (hDlg,  "Operation Success", "Attention",MB_OK);
-		//memcpy(&member_z,&addone,sizeof(struct member));
 	}
 	else
 		MessageBox (hDlg, "Operation Fail", "Attention", MB_OK);
 }
-int AddmemberBoxProc (HWND hDlg, int message, WPARAM wParam, LPARAM lParam)
+int AddCommunityBoxProc (HWND hDlg, int message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) { 
 		case MSG_COMMAND:{
 			switch (wParam) {
-				case IDB_AM_SUBMIT:			
-					addmember(hDlg);
+				case IDB_ADC_SUBMIT:			
+					addcommunity(hDlg);
 					EndDialog (hDlg, wParam);
 					break;
-				case IDB_AM_CANCEL:
+				case IDB_ADC_CANCEL:
 					EndDialog (hDlg, wParam);
 					break;		
 			}
 			break;
-        }     
+        }   
 		case MSG_CLOSE:{
 			EndDialog (hDlg, 0);
 			break;

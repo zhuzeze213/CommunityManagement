@@ -40,4 +40,6 @@
 #define IDM_REGISTER 23
 #define IDM_APPLY 24
 #define IDM_EXIT 25
+#define IDM_RECEIVE_MESSAGE 26
+#define IDM_SEND_MESSAGE 27
 #endif

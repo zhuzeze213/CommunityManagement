@@ -113,7 +113,7 @@ DROP TABLE IF EXISTS `member_admin`;
 CREATE TABLE `member_admin` (
   `m_id` int(11) NOT NULL COMMENT '会员编号',
   `c_id` int(11) NOT NULL COMMENT '社团编号',
-  `grant` int(11) NOT NULL DEFAULT '3' COMMENT '权限',
+  `mc_grant` int(11) NOT NULL DEFAULT '3' COMMENT '权限',
   `ma_baoliu` char(255) DEFAULT NULL,
   PRIMARY KEY (`m_id`,`c_id`),
   KEY `c_id` (`c_id`),

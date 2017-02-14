@@ -34,7 +34,7 @@ static HMENU member_menu(void)
     InsertMenuItem(hmnu, count++, TRUE, &mii);
 
 	
-    mii.type = MFT_STRING;
+ /*   mii.type = MFT_STRING;
     mii.state = 0;
     mii.id = IDM_FIND_MEMBER;
     mii.typedata = (DWORD)"Find";
@@ -45,7 +45,7 @@ static HMENU member_menu(void)
     mii.state = 0;
     mii.id = IDM_UPDATE_MEMBER;
     mii.typedata = (DWORD)"Update";
-    InsertMenuItem(hmnu, count++, TRUE, &mii);
+    InsertMenuItem(hmnu, count++, TRUE, &mii);*/
 
 	return hmnu;
 
@@ -85,7 +85,7 @@ static HMENU community_menu(void)
     InsertMenuItem(hmnu, count++, TRUE, &mii);
 
 	
-    mii.type = MFT_STRING;
+/*    mii.type = MFT_STRING;
     mii.state = 0;
     mii.id = IDM_FIND_COMMUNITY;
     mii.typedata = (DWORD)"Find";
@@ -96,7 +96,7 @@ static HMENU community_menu(void)
     mii.state = 0;
     mii.id = IDM_UPDATE_COMMUNITY;
     mii.typedata = (DWORD)"Update";
-    InsertMenuItem(hmnu, count++, TRUE, &mii);
+    InsertMenuItem(hmnu, count++, TRUE, &mii);*/
 
 	return hmnu;
 }
@@ -138,7 +138,7 @@ static HMENU activity_menu(void)
     mii.type = MFT_STRING;
     mii.state = 0;
     mii.id = IDM_FIND_AVTIVITY;
-    mii.typedata = (DWORD)"Find";
+    mii.typedata = (DWORD)"Apply";
     InsertMenuItem(hmnu, count++, TRUE, &mii);
 
 	
@@ -193,6 +193,18 @@ static HMENU information_menu(void)
     mii.state = 0;
     mii.id = IDM_EXIT;
     mii.typedata = (DWORD)"Exit";
+    InsertMenuItem(hmnu, count++, TRUE, &mii);
+
+    mii.type = MFT_STRING;
+    mii.state = 0;
+    mii.id = IDM_RECEIVE_MESSAGE;
+    mii.typedata = (DWORD)"Receive";
+    InsertMenuItem(hmnu, count++, TRUE, &mii);
+
+    mii.type = MFT_STRING;
+    mii.state = 0;
+    mii.id = IDM_SEND_MESSAGE;
+    mii.typedata = (DWORD)"Send";
     InsertMenuItem(hmnu, count++, TRUE, &mii);
 	return hmnu;
 }

@@ -24,7 +24,12 @@ struct member{
 	int state;//whether online
 	char m_reserve[RESERVE_LENGTH];
 };
+#define PER_MEMBER_NUM 10
 struct member member_z;
+struct member member_a[PER_MEMBER_NUM];
+struct member member_i[PER_MEMBER_NUM];
+int apply_num;
+int in_num[PER_MEMBER_NUM];
 struct member_admin{
 	int m_id;//member 
 	int c_id;//community
@@ -32,7 +37,8 @@ struct member_admin{
 	char ma_reserve[RESERVE_LENGTH];
 };
 struct member_admin member_admin_z;
-#define TEXT_LENGTH 4096
+
+#define TEXT_LENGTH 1024
 #define DATA_LENGTH 100
 struct info_diffusion{
 	int i_id;//information
@@ -42,7 +48,10 @@ struct info_diffusion{
 	char i_data[DATA_LENGTH];
 	char i_reserve[RESERVE_LENGTH];
 };
+#define PER_MESSAGE_NUM 10
 struct info_diffusion info_diffusion_z;
+struct info_diffusion message_i[PER_MESSAGE_NUM];
+int message_in_num[PER_MESSAGE_NUM];
 struct community{
 	int c_id;
 	char c_name[NAME_LENGTH];
@@ -52,7 +61,9 @@ struct community{
 	char c_information[TEXT_LENGTH];
 	char c_reserve[RESERVE_LENGTH];
 };
-struct community community_z;
+#define PER_COMMUNITY_NUM 10
+struct community community_z[PER_COMMUNITY_NUM];
+int community_num;
 struct activity_list{
 	int a_id;//activity
 	int c_id;//community
